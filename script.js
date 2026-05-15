@@ -45,6 +45,11 @@ loadMovieRow(
     ".topRatedRow"
 );
 
+loadMovieRow(
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    ".upcomingRow"
+);
+
 
 
 
@@ -444,7 +449,7 @@ function renderMovieRow(movies, rowClass){
 
                         `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
-                    }, 500);
+                    }, 500);UAL
 
                 }
 
