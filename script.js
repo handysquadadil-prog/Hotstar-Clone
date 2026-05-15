@@ -47,7 +47,7 @@ loadMovieRow(
 
 loadMovieRow(
     "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
-    ".upcomingRow"
+    ".upComingRow"
 );
 
 
@@ -562,3 +562,230 @@ window.addEventListener("scroll", () => {
 
 });
 
+
+
+
+/*
+SEARCH
+*/
+
+const searchInput =
+document.querySelector(".searchInput");
+
+searchInput.addEventListener("input", async () => {
+
+    const query =
+    searchInput.value.trim();
+
+
+
+    const discoverContent =
+    document.querySelector(".discoverContent");
+
+
+
+    const searchResults =
+    document.querySelector(".searchResults");
+
+
+
+    // EMPTY SEARCH
+
+    if(query.length < 2){
+
+        discoverContent.classList.remove("hidden");
+
+
+
+        searchResults.classList.add("hidden");
+
+
+
+        return;
+    }
+
+
+
+    // SEARCH MODE
+
+    discoverContent.classList.add("hidden");
+
+
+
+    searchResults.classList.remove("hidden");
+
+
+
+    renderSearchSkeletons();
+
+
+
+    const response = await fetch(
+
+        `https://api.themoviedb.org/3/search/multi?query=${query}`,
+
+        options
+    );
+
+
+
+    const data =
+    await response.json();
+
+
+
+    renderSearchResults(data.results);
+
+});
+
+
+
+
+const searchBtn =
+document.querySelector(".searchBtn");
+
+
+
+const homeBtn =
+document.querySelector(".homeBtn");
+
+
+
+const hero =
+document.querySelector(".hero");
+
+
+
+const tvshows =
+document.querySelector(".tvshows");
+
+
+
+const searchPage =
+document.querySelector(".searchPage");
+
+
+
+/* =========================
+   OPEN SEARCH PAGE
+========================= */
+
+searchBtn.addEventListener("click", () => {
+
+    hero.classList.add("hidden");
+
+
+
+    tvshows.classList.add("hidden");
+
+
+
+    searchPage.classList.remove("hidden");
+
+    document
+.querySelector(".searchInput")
+.focus();
+
+});
+
+
+
+/* =========================
+   BACK TO HOME
+========================= */
+
+homeBtn.addEventListener("click", () => {
+
+    hero.classList.remove("hidden");
+
+
+
+    tvshows.classList.remove("hidden");
+
+
+
+    searchPage.classList.add("hidden");
+
+});
+
+function renderSearchResults(movies){
+
+    const container =
+    document.querySelector(".searchResults");
+
+
+
+    container.innerHTML = "";
+
+
+
+    movies.forEach(movie => {
+
+        // IGNORE EMPTY POSTERS
+
+        if(!movie.poster_path) return;
+
+
+
+        const card =
+        document.createElement("div");
+
+
+
+        card.classList.add("movieCard");
+
+
+
+        card.innerHTML = `
+
+            <img
+                src="${IMAGE_URL + movie.poster_path}"
+                class="moviePoster">
+        `;
+
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+function renderSearchSkeletons(){
+
+    const container =
+    document.querySelector(".searchResults");
+
+
+
+    container.innerHTML = "";
+
+
+
+    for(let i = 0; i < 18; i++){
+
+        const skeleton =
+        document.createElement("div");
+
+
+
+        skeleton.classList.add(
+
+            "skeleton",
+
+            "searchSkeleton"
+        );
+
+
+
+        container.appendChild(skeleton);
+    }
+
+}
+
+loadMovieRow(
+
+    "https://api.themoviedb.org/3/trending/movie/week",
+
+    ".searchTrendingRow"
+);
