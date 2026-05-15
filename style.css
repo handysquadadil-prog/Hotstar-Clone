@@ -1,0 +1,665 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+
+body{
+
+    background:#040714;
+    color:white;
+
+    font-family:Arial;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+
+    width:90px;
+    height:100vh;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    z-index:1000;
+
+    padding-top:20px;
+
+    overflow:hidden;
+
+    transition:0.3s;
+
+    backdrop-filter:blur(10px);
+
+    background:
+    linear-gradient(
+        to right,
+        rgba(0,0,0,0.95),
+        rgba(0,0,0,0)
+    );
+}
+
+
+
+.sidebar:hover{
+
+    width:250px;
+}
+
+
+
+/* LOGO */
+
+.logo{
+
+    font-size:35px;
+
+    padding-left:28px;
+
+    margin-bottom:100px;
+}
+
+.menuItem:hover{
+
+    background:rgba(255,255,255,0.08);
+
+    color:white;
+
+    transform:translateX(6px);
+}
+
+
+
+/* MENU */
+
+.menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:50px;
+}
+
+
+
+.menuItem{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    color:#b8bcc8;
+}
+
+
+
+.icon{
+
+    font-size:24px;
+}
+
+
+
+/* TEXT */
+
+.text{
+
+    opacity:0;
+
+    transition:0.3s;
+
+    white-space:nowrap;
+
+    font-size:22px;
+}
+
+
+
+.sidebar:hover .text{
+
+    opacity:1;
+}
+
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100vh;
+
+    overflow:hidden;
+
+    z-index:0;
+}
+
+
+
+/* HERO IMAGE */
+
+.heroImage{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:0;
+}
+
+
+
+/* VIDEO CONTAINER */
+
+.videoContainer{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:1;
+}
+
+
+
+/* VIDEO */
+
+.heroVideo{
+
+    opacity:0;
+
+    transition:1s;
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%, -50%);
+
+    width:120vw;
+    height:67.5vw;
+
+    border:none;
+
+    pointer-events:none;
+}
+
+
+
+/* OVERLAY */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(
+        circle at center,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.82)
+    ),
+
+    linear-gradient(
+        to top,
+        rgba(4,7,20,1) 0%,
+        rgba(4,7,20,0.1) 40%,
+        rgba(4,7,20,0.7) 100%
+    );
+
+    z-index:2;
+}
+
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.heroContent{
+
+    position:absolute;
+
+    left:110px;
+
+    bottom:220px;
+
+    width:550px;
+
+    z-index:50;
+}
+
+
+
+/* TITLE */
+
+.title{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+}
+
+
+
+/* META INFO */
+
+.metaInfo{
+
+    margin-bottom:20px;
+
+    color:#d0d0d0;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    line-height:1.5;
+}
+
+
+
+/* DESCRIPTION */
+
+.description{
+
+    line-height:1.8;
+
+    color:#d0d0d0;
+
+    font-size:17px;
+}
+
+
+
+/* BUTTON */
+
+.watchBtn{
+
+    margin-top:30px;
+
+    padding:18px 40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#00a8ff;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+
+
+.watchBtn:hover{
+
+    transform:scale(1.05);
+}
+
+
+
+/* =========================
+   THUMBNAILS
+========================= */
+
+.thumbnailRow{
+
+    position:absolute;
+
+    right:40px;
+
+    bottom:40px;
+
+    width:850px;
+
+    display:flex;
+
+    gap:12px;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    scroll-behavior:smooth;
+
+    z-index:50;
+
+    padding-bottom:10px;
+}
+
+
+
+/* HIDE SCROLLBAR */
+
+.thumbnailRow::-webkit-scrollbar{
+
+    display:none;
+}
+
+
+
+/* THUMB */
+
+.thumb{
+
+    min-width:220px;
+
+    height:120px;
+
+    flex-shrink:0;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+
+
+.thumb:hover{
+
+    transform:scale(1.08);
+}
+
+
+
+/* =========================
+   CONTENT SECTIONS
+========================= */
+.tvshows{
+
+    position:relative;
+
+    z-index:20;
+
+    margin-top:120vh;
+
+    padding-left:110px;
+
+    padding-bottom:60px;
+}
+
+
+
+/* SECTION */
+
+.contentSection{
+
+    margin-bottom:60px;
+}
+
+
+
+/* SECTION TITLE */
+
+.sectionTitle{
+
+    font-size:38px;
+
+    margin-bottom:20px;
+}
+
+
+
+/* MOVIE ROW */
+
+.tvrow{
+
+    display:flex;
+
+    gap:16px;
+
+    overflow-x:auto;
+
+    overflow-y:visible;
+
+    scroll-behavior:smooth;
+
+    padding-bottom:10px;
+
+    padding:65px 0;
+}
+
+
+
+/* HIDE SCROLLBAR */
+
+.tvrow::-webkit-scrollbar{
+
+    display:none;
+}
+
+
+
+/* =========================
+   MOVIE CARD
+========================= */
+
+/* =========================
+   MOVIE CARD
+========================= */
+
+.movieCard{
+
+    position:relative;
+
+    min-width:140px;
+
+    height:240px;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+
+    cursor:pointer;
+
+    transition:0.35s ease;
+
+    background:#111827;
+
+    z-index:1;
+
+    transform-origin:center center;
+}
+
+
+
+/* POSTER */
+
+.moviePoster{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+
+/* ACTIVE CARD */
+
+.movieCard.active{
+
+    width:260px;
+    height: 400;
+
+    transform:scaleY(1.7) scaleX(1.15);
+
+    z-index:100;
+
+    box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+
+
+/* VIDEO */
+
+.cardVideo{
+
+    width:100%;
+
+    height:120px;
+
+    border:none;
+}
+
+
+
+/* CONTENT */
+
+.cardContent{
+
+    padding:10px;
+}
+
+
+
+/* BUTTON ROW */
+
+.cardButtons{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-bottom:10px;
+}
+
+
+
+/* WATCH BUTTON */
+
+.cardWatch{
+
+    flex:1;
+
+    padding:8px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:white;
+
+    color:black;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+
+
+/* PLUS BUTTON */
+
+.cardAdd{
+
+    width:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2b2b35;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+
+
+/* BUTTON HOVER */
+
+.cardWatch:hover,
+.cardAdd:hover{
+
+    transform:scale(1.05);
+}
+
+
+
+/* META */
+
+.cardMeta{
+
+    color:#d0d0d0;
+
+    margin-bottom:8px;
+
+    line-height:1.4;
+
+    font-size:11px;
+}
+
+
+
+/* DESCRIPTION */
+
+.cardDescription{
+
+    color:#b8b8b8;
+
+    line-height:1.4;
+
+    font-size:10px;
+}
